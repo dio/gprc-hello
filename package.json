@@ -1,0 +1,30 @@
+{
+  "name": "gprc-hello",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "grpcbuild": "protoc -I=. hello.proto --js_out=import_style=commonjs:. --grpc-web_out=import_style=commonjs,mode=grpcwebtext:.",
+    "webpack": "npx webpack client.js",
+    "start": "node server.js && docker build -t helloworld/envoy -f ./Dockerfile . && docker run -d -p 8080:8080 --network=host helloworld/envoy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oinke/gprc-hello.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oinke/gprc-hello/issues"
+  },
+  "homepage": "https://github.com/oinke/gprc-hello#readme",
+  "dependencies": {
+    "@grpc/proto-loader": "^0.4.0",
+    "google-protobuf": "^3.7.0-rc.3",
+    "grpc": "^1.18.0",
+    "grpc-web": "^1.0.3",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
